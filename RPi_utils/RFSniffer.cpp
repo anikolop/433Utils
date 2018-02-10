@@ -19,6 +19,7 @@ RCSwitch mySwitch;
 
 int main(int argc, char *argv[]) {
   
+     printf("Starting program\n");
      // This pin is not the first pin on the RPi GPIO header!
      // Consult https://projects.drogon.net/raspberry-pi/wiringpi/pins/
      // for more information.
@@ -36,6 +37,7 @@ int main(int argc, char *argv[]) {
      if (pulseLength != 0) mySwitch.setPulseLength(pulseLength);
      mySwitch.enableReceive(PIN);  // Receiver on interrupt 0 => that is pin #2
      
+     printf("Starting loop\n");
     
      while(1) {
   
@@ -47,7 +49,7 @@ int main(int argc, char *argv[]) {
           printf("Unknown encoding\n");
         } else {    
    
-          printf("Received %i\n", mySwitch.getReceivedValue() );
+          printf("Value/Delay/Length/Protocol: %i/%i/%i/%i\n", mySwitch.getReceivedValue(), mySwitch.getReceivedDelay(), mySwitch.getReceivedBitlength(), mySwitch.getReceivedProtocol() );
         }
     
         mySwitch.resetAvailable();
