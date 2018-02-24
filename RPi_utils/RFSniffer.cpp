@@ -23,7 +23,7 @@ int main(int argc, char *argv[]) {
      // This pin is not the first pin on the RPi GPIO header!
      // Consult https://projects.drogon.net/raspberry-pi/wiringpi/pins/
      // for more information.
-     int PIN = 2;
+     int PIN = 2;// wPi pin 2 (BCM #27)
      
      if(wiringPiSetup() == -1) {
        printf("wiringPiSetup failed, exiting...");
@@ -37,7 +37,7 @@ int main(int argc, char *argv[]) {
      if (pulseLength != 0) mySwitch.setPulseLength(pulseLength);
      mySwitch.enableReceive(PIN);  // Receiver on interrupt 0 => that is pin #2
      
-     printf("Starting loop\n");
+     printf("Starting sniffer loop...\n");
     
      while(1) {
   
@@ -49,7 +49,9 @@ int main(int argc, char *argv[]) {
           printf("Unknown encoding\n");
         } else {    
    
-          printf("Value/Delay/Length/Protocol: %i/%i/%i/%i\n", mySwitch.getReceivedValue(), mySwitch.getReceivedDelay(), mySwitch.getReceivedBitlength(), mySwitch.getReceivedProtocol() );
+//          printf("Value/Delay/Length/Protocol: %i/%i/%i/%i\n", mySwitch.getReceivedValue(), mySwitch.getReceivedDelay(), mySwitch.getReceivedBitlength(), mySwitch.getReceivedProtocol() );
+		// For simplicity, only show the encoded value, delay between signals, and the bit length
+          printf("Value/Delay/Length: %i/%i/%i\n", mySwitch.getReceivedValue(), mySwitch.getReceivedDelay(), mySwitch.getReceivedBitlength());
         }
     
         mySwitch.resetAvailable();
