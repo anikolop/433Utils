@@ -11,6 +11,7 @@
 #include "../rc-switch/RCSwitch.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <unistd.h>
      
      
 RCSwitch mySwitch;
@@ -54,10 +55,10 @@ int main(int argc, char *argv[]) {
           printf("Value/Delay/Length: %i/%i/%i\n", mySwitch.getReceivedValue(), mySwitch.getReceivedDelay(), mySwitch.getReceivedBitlength());
         }
     
+        fflush(stdout);
         mySwitch.resetAvailable();
-    
       }
-      
+      usleep(100); 
   
   }
 
